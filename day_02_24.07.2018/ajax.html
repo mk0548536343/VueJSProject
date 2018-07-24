@@ -5,12 +5,11 @@
           function getOurCountries() {
             fetch("https://restcountries.eu/rest/v2/all?fields=name")
                 .then(res => res.json())
-                .then(content =>{ 
+                .then(content =>{ return
                     fetch(`https://restcountries.eu/rest/v2/name/${content[ Math.floor((Math.random() * 249) + 1)].name}`)
                         .then(res=>res.json())
                         .then(content=>{
                              document.getElementById("ourCountry").innerHTML=content[0].name;
-                             console.log(content);
                              document.getElementById("flag").setAttribute("src",content[0].flag);
                         })
                         .catch(console.log("error"));

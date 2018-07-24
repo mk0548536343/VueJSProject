@@ -9,16 +9,29 @@
                     fetch(`https://restcountries.eu/rest/v2/name/${content[ Math.floor((Math.random() * 249) + 1)].name}`)
                         .then(res=>res.json())
                         .then(content=>{
-                             document.getElementById("ourCountry").innerHTML+=content[0].name;
+                             document.getElementById("ourCountry").innerHTML=content[0].name;
                              console.log(content);
+                             document.getElementById("flag").setAttribute("src",content[0].flag);
+
+
+
                         })
                         .catch(console.log("error"));
                 });
         }
         getOurCountries();
     </script>
+    <style>
+        .button {
+        background-color: white;
+        color: black;
+        border: 2px solid #4CAF50; /* Green */
+}
+    </style>
 </head>
 <body>
+    <button class="button" onclick="getOurCountries()">new land</button>
     <h1 id="ourCountry">Our Country is: </h1>
+    <img id="flag" >
 </body>
 </html>

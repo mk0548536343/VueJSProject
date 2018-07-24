@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script>
+       var randomNum = Math.floor((Math.random() * 249) + 1);
+          function getAllCountries() {
+            fetch("https://restcountries.eu/rest/v2/all?fields=name")
+                .then(res => res.json())
+                .then(content =>{ 
+                    fetch("https://restcountries.eu/rest/v2/name/"+content[randomNum].name)
+                        .then(res=>res.json())
+                        .then(content=>{
+                             document.getElementById("ourCountry").innerHTML+=content[0].name;
+                        })
+                        .catch(console.log("error"));
+                });
+        }
+        getAllCountries();
+    </script>
+</head>
+<body>
+    <h1 id="ourCountry">Our Country is: </h1>
+</body>
+</html>
